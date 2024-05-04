@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    input {
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<input type="number" id="firstNumber" placeholder="Unesite prvi broj">
+<input type="text" id="operator" placeholder="Unesite operaciju (+, -, *, /)">
+<input type="number" id="secondNumber" placeholder="Unesite drugi broj">
+<button onclick="calculate()">Izračunaj</button>
+
+<script>
+function calculate() {
+  var firstNumber = parseFloat(document.getElementById('firstNumber').value);
+  var operator = document.getElementById('operator').value.trim();
+  var secondNumber = parseFloat(document.getElementById('secondNumber').value);
+  
+  if (isNaN(firstNumber) || isNaN(secondNumber)) {
+    alert('Molimo unesite validne brojeve.');
+    return;
+  }
+
+  var result;
+  switch(operator) {
+    case '+':
+      result = firstNumber + secondNumber;
+      break;
+    case '-':
+      result = firstNumber - secondNumber;
+      break;
+    case '*':
+      result = firstNumber * secondNumber;
+      break;
+    case '/':
+      if (secondNumber === 0) {
+        alert('Deljenje nulom nije moguće.');
+        return;
+      }
+      result = firstNumber / secondNumber;
+      break;
+    default:
+      alert('Nepoznata operacija. Molimo unesite +, -, * ili /.');
+      return;
+  }
+
+  alert('Rezultat: ' + result);
+}
+</script>
+
+</body>
+</html>
